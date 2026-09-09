@@ -1,0 +1,27 @@
+{
+  "name": "stemcraft-ai-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^16.3.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "wavesurfer.js": "^7.12.11",
+    "lucide-react": "^1.43.0"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "@types/node": "^20.14.11",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/postcss": "^4.3.3",
+    "postcss": "^8.4.40"
+  }
+}

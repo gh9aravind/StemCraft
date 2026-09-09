@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import 'tailwindcss';
+
+/* ---- Design tokens (Tailwind v4 CSS-first theme) ------------------------
+   Generates utilities like bg-void, text-neon-cyan, font-display, etc.
+   directly from these custom properties — no tailwind.config needed.
+   Fonts are loaded above via Google Fonts CSS — see the note in
+   app/layout.tsx if you'd rather self-host them with next/font/google. */
+@theme {
+  --color-void: #0d0e12;
+  --color-surface: #14161d;
+  --color-surface-2: #1b1e28;
+
+  --color-neon-violet: #8b5cf6;
+  --color-neon-cyan: #22d3ee;
+  --color-neon-mint: #34d399;
+
+  --font-display: 'Space Grotesk', ui-sans-serif, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #0d0e12;
+}
+
+/* ---- Scrollbar, tuned for the dark DAW surface ------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0e12;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2d3a;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3d4c;
+}
+
+/* ---- Glassmorphism card, used across every panel ------------------------ */
+.glass-card {
+  background: rgba(20, 22, 29, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---- Neon glow shadows --------------------------------------------------- */
+.shadow-glow-violet {
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.35);
+}
+.shadow-glow-cyan {
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.35);
+}
+.shadow-glow-mint {
+  box-shadow: 0 0 24px rgba(52, 211, 153, 0.35);
+}
+
+/* ---- Faint background grid used behind the hero ------------------------- */
+.bg-grid-pattern {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ---- Custom range slider (volume / pan / seek) --------------------------- */
+input[type='range'].daw-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--slider-color, #8b5cf6) var(--slider-fill, 50%),
+    #2a2d3a var(--slider-fill, 50%)
+  );
+  outline: none;
+  cursor: pointer;
+}
+input[type='range'].daw-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px var(--slider-color, #8b5cf6);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+input[type='range'].daw-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+input[type='range'].daw-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: #2a2d3a;
+}
+input[type='range'].daw-slider::-moz-range-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--slider-color, #8b5cf6);
+}
+input[type='range'].daw-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px var(--slider-color, #8b5cf6);
+  cursor: pointer;
+}
+
+/* ---- Equalizer bars + ambient pulse animations --------------------------- */
+@keyframes eqBar {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes wavePulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.animate-wave-pulse {
+  animation: wavePulse 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

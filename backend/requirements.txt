@@ -1,0 +1,13 @@
+# StemCraft AI — backend dependencies
+# torch/torchaudio are pinned to a verified matching pair — torchaudio's
+# release cadence lags torch's, so do NOT bump torch past 2.11.x here
+# without confirming a matching torchaudio release exists.
+fastapi==0.141.1
+uvicorn[standard]==0.52.4
+python-multipart==0.0.32
+python-dotenv==1.0.1
+torch==2.11.0
+torchaudio==2.11.0
+demucs==4.1.0
+librosa==1.0.0
+soundfile==0.12.1
